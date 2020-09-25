@@ -28,14 +28,12 @@ export default {
   },
   computed: {
     comments() {
-      if (this.filterString !== '') {
-        return this.initComments
+      return this.filterString === ''
+        ? this.initComments
+        : this.initComments
           .filter((comment) => (
-            comment.name.includes(this.filterString)
-          || comment.email.includes(this.filterString)
-          || comment.body.includes(this.filterString)));
-      }
-      return this.initComments;
+            Object.keys(comment).some((field) => String(comment[field]).includes(this.filterString))
+          ));
     },
   },
   async created() {
@@ -48,7 +46,7 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .post
   border: 5px solid red
   margin: 20px

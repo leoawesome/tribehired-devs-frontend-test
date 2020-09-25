@@ -23,15 +23,18 @@ export default {
   },
   methods: {
     navigate(postID) {
-      this.$router.push(`/post/${postID}`);
+      this.$router.push(`/${postID}`);
     },
   },
 };
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .post
   border: 5px solid red;
   margin: 20px;
   padding: 10px;
+
+.post:hover
+  background-color: yellow
 </style>
